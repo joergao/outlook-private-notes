@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Private Notes</title>
+  <script src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+  <style>
+    :root { --bg:#fff; --fg:#201f1e; --muted:#6b6b6b; --border:#c8c6c4; --accent:#0f6cbd; --note:#fff8dc; }
+    @media (prefers-color-scheme: dark) {
+      :root { --bg:#292827; --fg:#f3f2f1; --muted:#a19f9d; --border:#605e5c; --accent:#4f9de0; --note:#3a3520; }
+    }
+    html, body { margin:0; height:100%; background:var(--bg); color:var(--fg);
+      font-family:"Segoe UI", system-ui, sans-serif; font-size:14px; }
+    body { display:flex; flex-direction:column; padding:12px; box-sizing:border-box; gap:8px; }
+    h1 { font-size:15px; margin:0; }
+    #subject { color:var(--muted); font-size:12px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    textarea { flex:1; min-height:140px; resize:none; padding:8px; border:1px solid var(--border); border-radius:4px;
+      background:var(--note); color:var(--fg); font:inherit; line-height:1.4; }
+    textarea:focus { outline:2px solid var(--accent); outline-offset:-1px; }
+    .row { display:flex; justify-content:space-between; align-items:center; color:var(--muted); font-size:12px; }
+    button { background:none; border:none; color:var(--accent); cursor:pointer; font:inherit; padding:0; }
+    button:disabled { color:var(--muted); cursor:default; }
+    #msg { padding:12px; color:var(--muted); }
+  </style>
+</head>
+<body>
+  <div id="msg" hidden>Select an e-mail or meeting to add a private note.</div>
+  <div id="main" style="display:contents">
+    <h1>🔒 Private note</h1>
+    <div id="subject"></div>
+    <textarea id="note" maxlength="2000" placeholder="Only you can see this note." disabled></textarea>
+    <div class="row">
+      <span id="status">&nbsp;</span>
+      <span><span id="count">0</span>/2000 &nbsp; <button id="clear" disabled>Delete note</button></span>
+    </div>
+  </div>
+  <script src="taskpane.js"></script>
+</body>
+</html>
